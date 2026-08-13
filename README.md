@@ -1,21 +1,45 @@
 # Terraform Plan Viewer CLI
 
-A native Linux terminal UI for Terraform JSON plans. Build once and run the resulting binary without a .NET runtime.
+A native terminal UI for exploring Terraform plan JSON files. It helps you review resource creates, updates, deletes, replacements, property differences, and Terraform outputs without leaving the terminal.
+
+## Install and start
+
+Download the Linux binary for your CPU architecture from the [GitHub Releases](../../releases) page, then make it executable:
 
 ```bash
-CGO_ENABLED=0 go build -o terraform-plan-viewer ./cmd/terraform-plan-viewer
-./terraform-plan-viewer tfplan-dev.json
+chmod +x terraform-plan-viewer_linux_amd64
+./terraform-plan-viewer_linux_amd64 plan.json
 ```
 
-Run `./terraform-plan-viewer` without an argument to open the file browser immediately.
-
-Use `a`, `c`, `u`, `d`, `r`, or `h` to filter all, create, update, delete, replace, or changed resources. Press `/` to enter the filter, `Space` or left/right to expand groups, and `Ctrl-R` to reload. The app prompts before reloading a changed plan file.
-
-## Releases
-
-Pushing a version tag creates a GitHub Release with statically linked Linux binaries for `amd64` and `arm64`.
+Create `plan.json` from a Terraform plan with:
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+terraform plan -out=tfplan
+terraform show -json tfplan > plan.json
 ```
+
+You can also start without a file. Press `f` to browse for a plan, or type a path in the file picker:
+
+```bash
+./terraform-plan-viewer_linux_amd64
+```
+
+You may rename the downloaded binary to a shorter local command, such as `tpv`:
+
+```bash
+mv terraform-plan-viewer_linux_amd64 tpv
+./tpv plan.json
+```
+
+## Navigation
+
+- `a`, `c`, `u`, `d`, `r`, `h`: show all, creates, updates, deletes, replacements, or all changed resources.
+- `/`: search resources by address, type, name, or provider.
+- `p`: search property names and values in the right pane.
+- `o`: switch between resource properties and Terraform outputs.
+- `x`: reveal or mask sensitive values.
+- `Space`, Left, Right: collapse or expand resource and output groups.
+- `f`: open the plan file picker.
+- `Ctrl-R`: reload the current plan.
+
+The viewer watches the active plan file and prompts before reloading it after a change.
