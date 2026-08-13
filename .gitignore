@@ -1,0 +1,32 @@
+# Go binaries and build output
+/terraform-plan-viewer
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Coverage and profiling output
+coverage.*
+*.coverprofile
+*.prof
+
+# Local configuration and logs
+.env
+.env.*
+*.log
+
+# Editor-local files
+.vscode/*.code-workspace
+.vscode/*.log
+.idea/
+*.swp
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+local-test.json

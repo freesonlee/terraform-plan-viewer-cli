@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build Terraform Plan Viewer",
+      "type": "process",
+      "command": "go",
+      "args": [
+        "build",
+        "./cmd/terraform-plan-viewer"
+      ],
+      "problemMatcher": "$go"
+    }
+  ]
+}
