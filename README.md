@@ -2,6 +2,8 @@
 
 A native terminal UI for exploring Terraform plan JSON files. It helps you review resource creates, updates, deletes, replacements, property differences, and Terraform outputs without leaving the terminal.
 
+Here is the rich [Web Version](https://go.azuredevopshelpers.dev/planviewer)
+
 ## Install and start
 
 Download the Linux binary for your CPU architecture from the [GitHub Releases](../../releases) page, then make it executable:
